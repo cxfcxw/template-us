@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale Growth | Premium Websites That Actually Convert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050507;
+            --bg-secondary: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
+            --accent-gold: #c9a84c;
+            --accent-gold-light: #e8d5a3;
+            --text-primary: #ffffff;
+            --text-secondary: #8b8b9a;
+            --text-muted: #5a5a6e;
+            --border: rgba(255,255,255,0.08);
+            --border-gold: rgba(201,168,76,0.3);
+            --shadow: 0 25px 80px rgba(0,0,0,0.6);
+            --glow: 0 0 60px rgba(201,168,76,0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none; z-index: 0;
+        }
+        .bg-gradient-orb {
+            position: fixed; width: 600px; height: 600px;
+            border-radius: 50%; filter: blur(150px); opacity: 0.4;
+            pointer-events: none; z-index: 0;
+        }
+        .orb-1 { top: -200px; right: -100px; background: radial-gradient(circle, rgba(201,168,76,0.3), transparent 70%); }
+        .orb-2 { bottom: -300px; left: -200px; background: radial-gradient(circle, rgba(79,142,255,0.2), transparent 70%); }
+        .orb-3 { top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%); width: 800px; height: 800px; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+        section { padding: 140px 0; }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 24px 0; transition: all 0.4s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(5,5,7,0.95); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); padding: 16px 0;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .nav-logo-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--accent-gold), #8b6914);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+        }
+        .nav-logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; }
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--accent-gold); transition: width 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: linear-gradient(135deg, var(--accent-gold), #8b6914) !important; color: #000 !important; padding: 12px 28px; border-radius: 10px; font-weight: 600 !important; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+        .nav-cta::after { display: none !important; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 40px; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.35s ease; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-gold), #8b6914); color: #000; box-shadow: 0 8px 40px rgba(201,168,76,0.25); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(201,168,76,0.4); }
+        .btn-outline { background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); }
+        .btn-outline:hover { border-color: var(--accent-gold); color: var(--accent-gold); transform: translateY(-2px); }
+        .btn-large { padding: 22px 52px; font-size: 1.1rem; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 120px; }
+        .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.1); border: 1px solid var(--border-gold); padding: 8px 18px; border-radius: 50px; font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 32px; font-weight: 500; }
+        .hero-badge-dot { width: 6px; height: 6px; background: var(--accent-gold); border-radius: 50%; animation: pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 4rem; font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 28px; }
+        .hero h1 .gold { background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px; max-width: 520px; }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+        .hero-stats { display: flex; gap: 48px; margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .stat-item { text-align: left; }
+        .stat-value { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--accent-gold); line-height: 1; margin-bottom: 6px; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .hero-visual { position: relative; }
+        .hero-image-wrapper { position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow), var(--glow); }
+        .hero-image-wrapper img { width: 100%; height: 500px; object-fit: cover; display: block; }
+        .hero-image-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 60%; background: linear-gradient(to top, rgba(5,5,7,0.9), transparent); }
+        .hero-float-card { position: absolute; background: rgba(10,10,15,0.95); border: 1px solid var(--border-gold); border-radius: 16px; padding: 20px 24px; backdrop-filter: blur(20px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 14px; }
+        .float-card-1 { top: 30px; left: -40px; }
+        .float-card-icon { width: 44px; height: 44px; background: rgba(201,168,76,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .float-card-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px; }
+        .float-card-value { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
+        .float-card-2 { bottom: 40px; right: -30px; }
+        .float-card-2 .float-card-value { color: #4ade80; }
+        .social-proof { padding: 80px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); }
+        .proof-inner { text-align: center; }
+        .proof-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; font-weight: 600; }
+        .proof-logos { display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; opacity: 0.5; }
+        .proof-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text-secondary); letter-spacing: -0.5px; }
+        .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 20px; font-weight: 600; }
+        .section-label::before { content: ''; width: 24px; height: 1.5px; background: var(--accent-gold); }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+        .section-desc { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; line-height: 1.8; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 80px; }
+        .service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 48px 36px; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent); opacity: 0; transition: opacity 0.4s; }
+        .service-card:hover { background: var(--bg-card-hover); border-color: var(--border-gold); transform: translateY(-8px); }
+        .service-card:hover::before { opacity: 1; }
+        .service-icon { width: 64px; height: 64px; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 28px; }
+        .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 14px; }
+        .service-card p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+        .audience { background: var(--bg-secondary); border-radius: 40px; padding: 100px 80px; margin: 60px 0; border: 1px solid var(--border); position: relative; overflow: hidden; }
+        .audience::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent); }
+        .audience-header { text-align: center; margin-bottom: 80px; }
+        .audience-header .section-desc { margin: 0 auto; }
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .audience-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 20px; padding: 44px 32px; text-align: center; transition: all 0.4s; }
+        .audience-card:hover { border-color: var(--border-gold); background: rgba(201,168,76,0.03); transform: translateY(-6px); }
+        .audience-icon { font-size: 3rem; margin-bottom: 24px; display: block; }
+        .audience-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+        .audience-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
+        .audience-tag { display: inline-block; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); color: var(--accent-gold); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 80px; }
+        .portfolio-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; transition: all 0.4s; }
+        .portfolio-item:hover { border-color: var(--border-gold); transform: translateY(-8px); box-shadow: var(--shadow); }
+        .portfolio-img { width: 100%; height: 300px; object-fit: cover; filter: brightness(0.85); transition: filter 0.4s; }
+        .portfolio-item:hover .portfolio-img { filter: brightness(1); }
+        .portfolio-content { padding: 36px; }
+        .portfolio-tag { display: inline-block; background: rgba(201,168,76,0.1); color: var(--accent-gold); padding: 5px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 14px; }
+        .portfolio-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+        .portfolio-content p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+        .portfolio-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .metric-box { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 16px; text-align: center; }
+        .metric-box.before { border: 1px solid rgba(239,68,68,0.2); background: rgba(239,68,68,0.05); }
+        .metric-box.after { border: 1px solid rgba(74,222,128,0.2); background: rgba(74,222,128,0.05); }
+        .metric-label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        .metric-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; }
+        .metric-box.before .metric-value { color: #f87171; }
+        .metric-box.after .metric-value { color: #4ade80; }
+        .pricing { padding-bottom: 160px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 80px; align-items: start; }
+        .pricing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 28px; padding: 48px 36px; transition: all 0.4s; position: relative; }
+        .pricing-card:hover { border-color: var(--border-gold); transform: translateY(-6px); }
+        .pricing-card.featured { background: rgba(201,168,76,0.05); border: 1.5px solid var(--accent-gold); transform: scale(1.04); box-shadow: 0 30px 80px rgba(201,168,76,0.12); }
+        .pricing-card.featured:hover { transform: scale(1.04) translateY(-6px); }
+        .pricing-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent-gold), #8b6914); color: #000; padding: 6px 20px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+        .pricing-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 8px; }
+        .pricing-price { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 800; margin-bottom: 6px; line-height: 1; }
+        .pricing-price span { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
+        .pricing-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+        .pricing-features { list-style: none; margin-bottom: 36px; }
+        .pricing-features li { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 0.9rem; color: var(--text-secondary); }
+        .pricing-features li .check { color: var(--accent-gold); font-weight: 700; flex-shrink: 0; }
+        .pricing-features li .cross { color: var(--text-muted); flex-shrink: 0; }
+        .pricing-card .btn { width: 100%; justify-content: center; }
+        .cta-section { background: var(--bg-secondary); border-radius: 40px; padding: 120px 80px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden; margin-bottom: 60px; }
+        .cta-section::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%); pointer-events: none; }
+        .cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; line-height: 1.1; }
+        .cta-section p { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 50px; line-height: 1.8; }
+        .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .cta-trust { display: flex; justify-content: center; gap: 40px; margin-top: 50px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .trust-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted); }
+        .trust-item .icon { color: var(--accent-gold); }
+        .footer { border-top: 1px solid var(--border); padding: 80px 0 50px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; margin-bottom: 60px; }
+        .footer-brand p { font-size: 0.9rem; color: var(--text-muted); margin-top: 16px; line-height: 1.7; max-width: 320px; }
+        .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); margin-bottom: 20px; font-weight: 600; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--text-primary); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); }
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+            .hero-visual { order: -1; }
+            .hero h1 { font-size: 3.2rem; }
+            .services-grid, .audience-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .audience, .cta-section { padding: 60px 40px; }
+            .pricing-card.featured { transform: scale(1); }
+            .pricing-card.featured:hover { transform: translateY(-6px); }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+            section { padding: 80px 0; }
+            .hero h1 { font-size: 2.4rem; letter-spacing: -1px; }
+            .section-title { font-size: 2.2rem; }
+            .hero-stats { gap: 30px; }
+            .stat-value { font-size: 1.8rem; }
+            .hero-actions { flex-direction: column; }
+            .hero-actions .btn { width: 100%; }
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .cta-section h2 { font-size: 2rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .cta-trust { flex-direction: column; align-items: center; gap: 16px; }
+            .float-card-1, .float-card-2 { display: none; }
+            .proof-logos { gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-gradient-orb orb-1"></div>
+    <div class="bg-gradient-orb orb-2"></div>
+    <div class="bg-gradient-orb orb-3"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">⚡</div>
+                <span class="nav-logo-text">Scale Growth</span>
+            </a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#portfolio">Results</a>
+                <a href="#pricing">Pricing</a>
+                <a href="https://9m2ks96m.forms.app/untitled-form" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <div class="hero-badge-dot"></div>
+                        Accepting 2 new partners this month
+                    </div>
+                    <h1>
+                        Your Website Should Be Your<br>
+                        <span class="gold">Best Salesperson.</span><br>
+                        Not a Cost Center.
+                    </h1>
+                    <p class="hero-desc">
+                        We build high-converting, premium websites for ambitious e-commerce brands and SaaS companies. If your site isn't generating revenue, it's holding you back.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://9m2ks96m.forms.app/untitled-form" class="btn btn-primary btn-large">Get Your Free Audit</a>
+                        <a href="#portfolio" class="btn btn-outline btn-large">See Our Results</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">+247%</div>
+                            <div class="stat-label">Avg. Revenue Growth</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">&lt;2s</div>
+                            <div class="stat-label">Page Load Speed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">47</div>
+                            <div class="stat-label">Avg. ROI Days</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=85" alt="Premium office building">
+                        <div class="hero-image-overlay"></div>
+                        <div class="hero-float-card float-card-1">
+                            <div class="float-card-icon">📈</div>
+                            <div>
+                                <div class="float-card-label">Conversion Rate</div>
+                                <div class="float-card-value">+312% ↑</div>
+                            </div>
+                        </div>
+                        <div class="hero-float-card float-card-2">
+                            <div class="float-card-label">Monthly Revenue</div>
+                            <div class="float-card-value">$285K</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container proof-inner">
+            <div class="proof-label">Built for brands serious about growth</div>
+            <div class="proof-logos">
+                <div class="proof-logo">Tech Startups</div>
+                <div class="proof-logo">E-Commerce Brands</div>
+                <div class="proof-logo">SaaS Companies</div>
+                <div class="proof-logo">Performance Agencies</div>
+                <div class="proof-logo">7-Figure Founders</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-label">What We Build</div>
+            <h2 class="section-title">More Than a Website.<br>A Revenue Growth Engine.</h2>
+            <p class="section-desc">
+                Every pixel serves a purpose. Every interaction drives action. We don't build pretty sites — we build machines that generate leads and close deals.
+            </p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Conversion-First Design</h3>
+                    <p>Strategic layouts that guide visitors toward action. No vanity design — every element optimized for measurable results.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Lightning Performance</h3>
+                    <p>Sub-2-second load times across all devices. Speed that delights users and ranks on Google's first page.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile-First Approach</h3>
+                    <p>Flawless experience on every screen size. Your mobile users deserve the same premium experience as desktop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="audience">
+            <div class="audience-header">
+                <div class="section-label">Who We Build For</div>
+                <h2 class="section-title">We're Selective.<br>We're Worth It.</h2>
+                <p class="section-desc">We work with founders who see their website as a revenue driver, not just an expense. If that's you, let's talk.</p>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <span class="audience-icon">🛒</span>
+                    <h3>7-Figure DTC Brands</h3>
+                    <p>E-commerce brands ready to systemize their online presence with sites that convert like clockwork.</p>
+                    <span class="audience-tag">Typical: $2,997 - $5,997</span>
+                </div>
+                <div class="audience-card">
+                    <span class="audience-icon">☁️</span>
+                    <h3>SaaS & Tech Startups</h3>
+                    <p>Seed to Series B companies needing sites that communicate technical sophistication while driving enterprise leads.</p>
+                    <span class="audience-tag">Typical: $2,997 - $5,997</span>
+                </div>
+                <div class="audience-card">
+                    <span class="audience-icon">🎯</span>
+                    <h3>Performance Agencies</h3>
+                    <p>Agencies scaling to 8-figures who need client-facing sites that close enterprise deals.</p>
+                    <span class="audience-tag">Typical: $2,997 - $5,997</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-label">Proven Results</div>
+            <h2 class="section-title">Growth Stories,<br>Not Just Projects.</h2>
+            <p class="section-desc">Every partnership here moved the needle. We measure success in revenue, not aesthetics.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Premium apparel store" class="portfolio-img">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Premium Apparel</span>
+                        <h3>Elevate Apparel</h3>
+                        <p>Full e-commerce transformation from basic Shopify theme to custom conversion engine with advanced upsell flows.</p>
+                        <div class="portfolio-metrics">
+                            <div class="metric-box before">
+                                <div class="metric-label">Before</div>
+                                <div class="metric-value">$82K/mo</div>
+                            </div>
+                            <div class="metric-box after">
+                                <div class="metric-label">After</div>
+                                <div class="metric-value">$285K/mo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Data analytics dashboard" class="portfolio-img">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">B2B SaaS</span>
+                        <h3>DataFlow Analytics</h3>
+                        <p                        <p>Rebuilt from ground up with focus on lead capture, pricing page optimization, and enterprise-grade credibility.</p>
+                        <div class="portfolio-metrics">
+                            <div class="metric-box before">
+                                <div class="metric-label">Before</div>
+                                <div class="metric-value">142 Leads/mo</div>
+                            </div>
+                            <div class="metric-box after">
+                                <div class="metric-label">After</div>
+                                <div class="metric-value">531 Leads/mo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-label">Investment</div>
+            <h2 class="section-title">Transparent Pricing.<br>No Surprises.</h2>
+            <p class="section-desc">Three tiers. Pick the one that matches your ambition. Every package includes premium design, mobile optimization, and our signature delivery speed.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Starter</div>
+                    <div class="pricing-price"></div>
+                    <p class="pricing-desc">For early-stage brands ready to upgrade from template sites.</p>
+                    <ul class="pricing-features">
+                        <li><span class="check">?</span> Custom Website Design</li>
+                        <li><span class="check">?</span> Up to 5 Pages</li>
+                        <li><span class="check">?</span> Mobile Responsive</li>
+                        <li><span class="check">?</span> Basic SEO Setup</li>
+                        <li><span class="check">?</span> Contact Form</li>
+                        <li><span class="check">?</span> 5-Day Delivery</li>
+                        <li><span class="cross">?</span> Copywriting</li>
+                        <li><span class="cross">?</span> Advanced Analytics</li>
+                    </ul>
+                    <a href="https://9m2ks96m.forms.app/untitled-form" class="btn btn-outline">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">MOST POPULAR</div>
+                    <div class="pricing-name">Growth</div>
+                    <div class="pricing-price">,997</div>
+                    <p class="pricing-desc">For scaling brands that need conversion-optimized pages and speed.</p>
+                    <ul class="pricing-features">
+                        <li><span class="check">?</span> Everything in Starter</li>
+                        <li><span class="check">?</span> Up to 10 Pages</li>
+                        <li><span class="check">?</span> Conversion Copywriting</li>
+                        <li><span class="check">?</span> A/B Test Ready</li>
+                        <li><span class="check">?</span> Advanced SEO Package</li>
+                        <li><span class="check">?</span> Google Analytics Setup</li>
+                        <li><span class="check">?</span> 2 Rounds of Revisions</li>
+                        <li><span class="check">?</span> Priority Support</li>
+                    </ul>
+                    <a href="https://9m2ks96m.forms.app/untitled-form" class="btn btn-primary">Get Your Free Audit</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">Premium</div>
+                    <div class="pricing-price">,997</div>
+                    <p class="pricing-desc">For serious 7-figure brands that need a complete digital flagship.</p>
+                    <ul class="pricing-features">
+                        <li><span class="check">?</span> Everything in Growth</li>
+                        <li><span class="check">?</span> Unlimited Pages</li>
+                        <li><span class="check">?</span> Full Brand Strategy</li>
+                        <li><span class="check">?</span> CRM Integration</li>
+                        <li><span class="check">?</span> Marketing Automation</li>
+                        <li><span class="check">?</span> Dedicated Project Manager</li>
+                        <li><span class="check">?</span> Unlimited Revisions</li>
+                        <li><span class="check">?</span> 30-Day Support</li>
+                    </ul>
+                    <a href="https://9m2ks96m.forms.app/untitled-form" class="btn btn-outline">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="cta-section">
+            <h2>Ready to Turn Your Website Into<br>a Revenue Machine?</h2>
+            <p>Most founders wait too long to invest in their website. The brands that move fast win. We're taking 2 new clients this month.</p>
+            <div class="cta-buttons">
+                <a href="https://9m2ks96m.forms.app/untitled-form" class="btn btn-primary btn-large">Get Your Free Website Audit</a>
+                <a href="#portfolio" class="btn btn-outline btn-large">See More Results</a>
+            </div>
+            <div class="cta-trust">
+                <div class="trust-item"><span class="icon">?</span> No commitment required</div>
+                <div class="trust-item"><span class="icon">?</span> Response within 24 hours</div>
+                <div class="trust-item"><span class="icon">?</span> 47-day average ROI</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <div class="nav-logo-icon">?</div>
+                        <span class="nav-logo-text">Scale Growth</span>
+                    </a>
+                    <p>We build high-converting websites for ambitious e-commerce brands and SaaS companies. Premium design. Measurable results.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Website Design</a></li>
+                        <li><a href="#portfolio">Case Studies</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="https://9m2ks96m.forms.app/untitled-form">Free Audit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Process</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Discord Community</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>? 2026 Scale Growth. All rights reserved.</span>
+                <span>Premium Websites for Serious Founders.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
